@@ -1,0 +1,20 @@
+var express = require('express');
+var app = express();
+var fs = require('fs');
+
+app.use('/message', function(req,res) {
+    console.log('user requested endpoint');
+    
+    res.send('hello');
+});
+
+
+app.use('/users', function(req,res) {
+    fs.readFile('./data1.json', 'utf-8', function(err, data) {
+    
+        res.end(data);
+    });
+});
+
+
+app.listen(3000);
